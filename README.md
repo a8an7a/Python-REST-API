@@ -31,18 +31,19 @@ YaPi REST API
 2. Запустите `setup.sh` (Linux, OS X, Cygwin) или `setup.bat` (Windows): в директории будет создано виртуальное окружение и установлены все необходимые раширения для работы приложения. В другом случае, выполните следующие команды:
 
         $ python -m venv venv                                 (Linux)
-        $ source venv/scripts/activate
-        $ pip install -r requirements.txt
+        $ source venv/bin/activate
+        (venv) $ pip install -r requirements.txt
 
         python -m venv venv                                 (Windows)
-        venv\Scripts\pip install -r requirements.txt
+        venv\Scripts\activate 
+        (venv) pip install -r requirements.txt
 
 3. Выполните команду `./manage.py db upgrade` или `venv\scripts\python manage.py db upgrade` для создания и обновления базы данных приложения.
 
 4. Чтобы запустить сервер для разработки, выполните:
 
-        $ ./manage.py runserver                               (Linux)
-        venv\Scripts\python manage.py runserver             (Windows)
+        (venv) $ python manage.py runserver                   (Linux)
+        (venv) python manage.py runserver                   (Windows)
 
 Зависимости приложения
 ----------------------
@@ -51,6 +52,8 @@ YaPi REST API
 - `Flask-SQLAlchemy` — фреймворк для работы с реляционными базами данных
 - `Flask-Script` — парсер командной строки
 - `Flask-Migrate` — фреймворк миграции базы данных
+- `Gunicorn` — HTTP-сервер интерфейса шлюза веб-сервера Python
+- `nginx` — веб-сервер
 
 А так же расширение `Cerebrus` для реализации валидации входящих данных и клиент `HTTPie` для тестирование веб-службы.
 
@@ -81,13 +84,22 @@ YaPi REST API
         │   ├── models.py           # модели базы данных
         │   ├── relatives.py        # функции для установкии двусторонности родства
         │   └── validation.py       # схема и функции валидации
+        |
+        ├── deployment              # конфигурационные файлы для
+        |    ├── nGinx              # реализации локального сервера
+        |    |   └── yapi
+        |    └── systemd.system
+        |        └── yapi.service
+        |
         ├── migrations              # файлы миграции базы данных
         |   └── ...
+        |
         ├── tests
         |   ├── __init__.py
         |   ├── test_api.py         # набор тестирования веб-службы
         |   ├── test_basics.py      # базовое тестирование
         |   └── ...
+        |  
         ├── manage.py               # инициализация приложения
         ├── config.py               # настройки приложения
         └── ...
