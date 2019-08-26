@@ -31,7 +31,8 @@ YaPi REST API
 2. Запустите `setup.sh` (Linux, OS X, Cygwin) или `setup.bat` (Windows): в директории будет создано виртуальное окружение и установлены все необходимые раширения для работы приложения. В другом случае, выполните следующие команды:
 
         $ python -m venv venv                                 (Linux)
-        $ venv/Scripts/pip install -r requirements.txt
+        $ source venv/scripts/activate
+        $ pip install -r requirements.txt
 
         python -m venv venv                                 (Windows)
         venv\Scripts\pip install -r requirements.txt
@@ -39,7 +40,7 @@ YaPi REST API
 3. Выполните команду `./manage.py db upgrade` или `venv\scripts\python manage.py db upgrade` для создания и обновления базы данных приложения.
 
 4. Чтобы запустить сервер для разработки, выполните:
-        
+
         $ ./manage.py runserver                               (Linux)
         venv\Scripts\python manage.py runserver             (Windows)
 
