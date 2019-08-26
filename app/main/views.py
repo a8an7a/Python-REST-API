@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import pickle
 import locale
 from datetime import datetime
@@ -10,9 +9,6 @@ from ..models import Import, Citizen
 from ..validation import cerberus, cerberus_lite, _unique
 from ..relatives import set_relatives, new_relatives
 
-locale.setlocale(locale.LC_TIME, 'Rus')
-a = datetime.today().strftime('%a, %d %b %Y %H:%M:%S GMT')
-locale='ru_RU'
 @main.after_request
 def apply_caching( e ):
     """ Устанавливает местное время в заголовок ответа Date
