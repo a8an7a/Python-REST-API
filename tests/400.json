@@ -1,0 +1,134 @@
+[
+    {
+        "citizen_id": 1,
+        "town": "Тула",
+        "street": "Ленина",
+        "building": "1к2стр5",
+        "apartament": 21,
+        "name": "Ершов Лука Борисович",
+        "birdth_date": "07.08.2010",
+        "gender": "male",
+        "relatives": [2]
+    },
+    {
+        "citizen_id": 3,
+        "town": "Москва",
+        "street": "Баженова",
+        "building": "20к3стр6",
+        "apartament": 66,
+        "name": "Носкова Людмила Брониславовна",
+        "birdth_date": "03.08.1986",
+        "gender": "female",
+        "relatives": []
+    },
+    {
+        "citizen_id": 5,
+        "town": "",
+        "street": "Байкальская",
+        "building": "25к2стр5",
+        "apartament": 56,
+        "name": "Павлик Лариса Валерьевна",
+        "birdth_date": "16.08.2009",
+        "gender": "female",
+        "relatives": []
+    },
+    {
+        "citizen_id": 2,
+        "town": "Санкт-Петербург",
+        "street": "Белы Куна",
+        "building": "8к2стр4",
+        "apartament": 66,
+        "name": "Ершов Леопольд Данилович",
+        "birdth_date": "03.11.1983",
+        "gender": "male",
+        "relatives": [1]
+    },
+    {
+        "citizen_id": 4,
+        "town": "Москва",
+        "street": "",
+        "building": "16к1стр1",
+        "apartament": 20,
+        "name": "Константинов Никита Ярославович",
+        "birdth_date": "18.07.1994",
+        "gender": "male",
+        "relatives": []
+    },
+    {
+        "citizen_id": 7,
+        "town": "Тула",
+        "street": "Брянская",
+        "building": "3к6стр1",
+        "apartament": 22,
+        "name": "Белозёров Людовик Андреевич",
+        "birdth_date": "29.07.1986",
+        "gender": "male",
+        "relatives": [9]
+    },
+    {
+        "citizen_id": 9,
+        "town": "Санкт-Петурбург",
+        "street": "Большая Тульская",
+        "building": "",
+        "apartament": 20,
+        "name": "Белозёров Лукьян Фёдорович",
+        "birdth_date": "21.12.1993",
+        "gender": "male",
+        "relatives": [7]
+    },
+    {
+        "citizen_id": 6,
+        "town": "Тула",
+        "street": "50 лет Октября",
+        "building": "3к2стр3",
+        "apartament": 19,
+        "name": "Галкин Людвиг Брониславович",
+        "birdth_date": "02.02.2005",
+        "gender": "male",
+        "relatives": []
+    },
+    {
+        "citizen_id": 8,
+        "town": "Москва",
+        "street": "Бакинская",
+        "building": "2к6стр3",
+        "apartament": 30,
+        "name": "Сорокин Леопольд Данилович",
+        "birdth_date": "",
+        "gender": "male",
+        "relatives": []
+    },
+    {
+        "citizen_id": 11,
+        "town": "Москва",
+        "street": "Барболина",
+        "building": "7к7стр2",
+        "apartament": -1,
+        "name": "Хохлова Лада Дмитриевна",
+        "birdth_date": "16.12.2009",
+        "gender": "female",
+        "relatives": [10]
+    },
+    {
+        "citizen_id": 10,
+        "town": "Санкт-Петербург",
+        "street": "Подольская",
+        "building": "8к2стр4",
+        "apartament": 49,
+        "name": "Хохлова Любовь Михайловна",
+        "birdth_date": "27.05.1991",
+        "gender": "female",
+        "relatives": [11]
+    },
+    {
+        "citizen_id": 12,
+        "town": "Тула",
+        "street": "Малая Тульская",
+        "building": "2к8стр6",
+        "apartament": 40,
+        "name": "",
+        "birdth_date": "04.12.1998",
+        "gender": "female",
+        "relatives": []
+    }
+]
