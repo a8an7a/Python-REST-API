@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve yapi
+After=network.target
+
+[Service]
+User=entrant
+Group=www-data
+WorkingDirectory=/home/entrant/yapi
+Environment="PATH=/home/entrant/yapi/venv/bin"
+ExecStart=/home/entrant/yapi/venv/bin/gunicorn -b 0.0.0.0:8080 -w 4 manage:app
+
+[Install]
+WantedBy=multi-user.target
