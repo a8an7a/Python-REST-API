@@ -38,7 +38,6 @@ YaPi REST API
         venv\Scripts\activate 
         (venv) pip install -r requirements.txt
 
-<<<<<<< HEAD
 3. Выполните команду `python manage.py db upgrade` для создания и обновления базы данных приложения.
 
 4. (Для Linux) Чтобы запустить локальный сервер, необходимо создать юнит сервисного модуля **systemd**, который позволит системе инициализации **Ubuntu** автоматически запускать `Gunicorn` и обслуживать приложение при каждой загрузке сервера
@@ -80,14 +79,6 @@ YaPi REST API
    ```
 
    В разделе [**Install**] находятся параметры, которые указывают **systemd**, когда запускать сервис. В данном случае: когда система запущена и работает.
-=======
-3. Выполните команду `./manage.py db upgrade` или `venv\scripts\python manage.py db upgrade` для создания и обновления базы данных приложения.
-
-4. Чтобы запустить сервер для разработки, выполните:
-
-        (venv) $ python manage.py runserver                   (Linux)
-        (venv) python manage.py runserver                   (Windows)
->>>>>>> ee9a23e3ad881f3d7fa3e53ea35af0e7756951ea
 
 Зависимости приложения
 ----------------------
