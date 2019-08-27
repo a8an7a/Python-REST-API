@@ -1,0 +1,10 @@
+server {
+
+    listen 80;
+    server_name 0.0.0.0:8080;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/entrant/yapi/yapi.sock;
+    }
+}
