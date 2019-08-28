@@ -246,7 +246,7 @@ class APITestCase( unittest.TestCase ):
 
         self.assertEqual( response.status_code, 200 )
         json_response = json.loads( response.get_data( as_text = True ) )
-        self.assertEqual( json_response, citizen[2] )
+        self.assertEqual( json_response['data'], citizen[2] )
 
         # Проверка: корректна ли двусторонность родства 
         # после изменения родственных связей

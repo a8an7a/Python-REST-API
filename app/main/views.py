@@ -90,7 +90,7 @@ def patch_citizen( import_id, citizen_id ):
     db.session.add(citizen)
     db.session.commit()
 
-    return jsonify( citizen.to_json() ), 200
+    return jsonify({ 'data': citizen.to_json() }), 200
 
 @main.route('/imports/<int:import_id>/citizens/birthdays', methods = ['GET'])
 def get_birthdays( import_id ):
