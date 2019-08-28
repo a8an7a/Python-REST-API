@@ -7,7 +7,6 @@ if os.environ.get('COVERAGE'):
     COV.start()
 
 import sys
-import click
 from app import create_app, db
 from app.models import Import, Citizen
 from flask_script import Manager, Shell

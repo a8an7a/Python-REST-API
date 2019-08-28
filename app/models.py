@@ -41,6 +41,9 @@ class Citizen( db.Model ):
         born = datetime.strptime(self.birth_date, '%d.%m.%Y')
         return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
+    def get_month_birth( self ):
+        return str(datetime.strptime(self.birth_date, '%d.%m.%Y').month)
+
     def to_json( self ):
         json_citizen = {
             'citizen_id': self.citizen_id,

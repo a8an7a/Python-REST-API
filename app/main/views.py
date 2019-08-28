@@ -1,3 +1,4 @@
+import time
 import pickle
 import locale
 from datetime import datetime
@@ -90,3 +91,34 @@ def patch_citizen( import_id, citizen_id ):
     db.session.commit()
 
     return jsonify( citizen.to_json() ), 200
+
+@main.route('/imports/<int:import_id>/citizens/birthdays', methods = ['GET'])
+def get_birthdays( import_id ):
+    citizens = Citizen.query.filter_by( import_id = import_id ).all()
+
+    if not citizens:
+        abort(404)
+
+    data = dict( (str(i), []) for i in range(1,13) )
+
+    for сitizen in citizens:
+        month = сitizen.get_month_birth()
+        relatives = pickle.loads(сitizen.relatives)
+
+        if not relatives:
+            continue
+
+        for relative in relatives:
+            if not data[month]:
+                data[month].append({ 'citizen_id': relative,
+                                     'present': 1 })
+            else:
+                for el in data[month]:
+                    if el['citizen_id'] == relative:
+                        el['present'] += 1
+                        break
+                else:
+                    data[month].append({ 'citizen_id': relative,
+                                         'present': 1 })
+
+    return jsonify({'data': data}), 200
