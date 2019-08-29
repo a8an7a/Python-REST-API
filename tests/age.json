@@ -23,7 +23,7 @@
     },
     {
         "citizen_id": 5,
-        "town": "",
+        "town": "Тула",
         "street": "Байкальская",
         "building": "25к2стр5",
         "apartment": 56,
@@ -46,7 +46,7 @@
     {
         "citizen_id": 4,
         "town": "Москва",
-        "street": "",
+        "street": "Ленина",
         "building": "16к1стр1",
         "apartment": 20,
         "name": "Константинов Никита Ярославович",
@@ -67,9 +67,9 @@
     },
     {
         "citizen_id": 9,
-        "town": "Санкт-Петурбург",
+        "town": "Санкт-Петербург",
         "street": "Большая Тульская",
-        "building": "3к6стр1",
+        "building": "1к2стр3",
         "apartment": 20,
         "name": "Белозёров Лукьян Фёдорович",
         "birth_date": "21.12.1993",
@@ -94,7 +94,7 @@
         "building": "2к6стр3",
         "apartment": 30,
         "name": "Сорокин Леопольд Данилович",
-        "birth_date": "02.02.1988",
+        "birth_date": "15.05.1980",
         "gender": "male",
         "relatives": []
     },
@@ -103,7 +103,7 @@
         "town": "Москва",
         "street": "Барболина",
         "building": "7к7стр2",
-        "apartment": 24,
+        "apartment": 2,
         "name": "Хохлова Лада Дмитриевна",
         "birth_date": "16.12.2009",
         "gender": "female",
@@ -126,7 +126,7 @@
         "street": "Малая Тульская",
         "building": "2к8стр6",
         "apartment": 40,
-        "name": "Иванов Олег Дмитриевич",
+        "name": "Иванов Алексей Михайлович",
         "birth_date": "04.12.1998",
         "gender": "female",
         "relatives": []

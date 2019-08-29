@@ -1,6 +1,4 @@
-import time
-import pickle
-import locale
+import time, pickle, numpy as np
 from datetime import datetime
 
 from .. import db
@@ -9,6 +7,7 @@ from flask import jsonify, make_response, request, abort
 from ..models import Import, Citizen
 from ..validation import cerberus, cerberus_lite, _unique
 from ..relatives import set_relatives, new_relatives
+from sqlalchemy.orm import load_only
 
 @main.after_request
 def apply_caching( e ):
@@ -94,6 +93,10 @@ def patch_citizen( import_id, citizen_id ):
 
 @main.route('/imports/<int:import_id>/citizens/birthdays', methods = ['GET'])
 def get_birthdays( import_id ):
+    """ Возвращает жителей и количество подарков, которые 
+    они будут покупать своим ближайшим родственникам, 
+    сгруппированных по месяцам из указанного набора данных
+    """
     citizens = Citizen.query.filter_by( import_id = import_id ).all()
 
     if not citizens:
@@ -120,5 +123,31 @@ def get_birthdays( import_id ):
                 else:
                     data[month].append({ 'citizen_id': relative,
                                          'present': 1 })
+
+    return jsonify({'data': data}), 200
+
+@main.route('/imports/<int:import_id>/towns/stat/percentile/age', methods = ['GET'])
+def get_percentile( import_id ):
+    """ Возвращает статистику по городам для указанного 
+    набора данных в разрезе возраста (полных лет) жителей
+    """
+    towns = db.session.query(Citizen.town).filter(Citizen.import_id == import_id).\
+                       group_by(Citizen.town).all()
+
+    if not towns:
+        abort(404)
+
+    towns = [ town[0] for town in towns ]
+
+    data = []
+    for town in towns:
+        citizens = Citizen.query.filter_by( import_id = import_id, town = town ).all()
+        age = [ citizen.get_age() for citizen in citizens ]
+        data.append({
+            'town': town,
+            'p50': round( np.percentile(age, 50, interpolation = 'linear'), 2),
+            'p75': round( np.percentile(age, 75, interpolation = 'linear'), 2),
+            'p99': round( np.percentile(age, 99, interpolation = 'linear'), 2),
+        })
 
     return jsonify({'data': data}), 200

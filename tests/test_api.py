@@ -402,7 +402,6 @@ class APITestCase( unittest.TestCase ):
     def test_get_birthdays_404( self ):
         """ Тестирование GET-запроса '.../birthdays' для несуществующих данных
         """
-
         # Запрос '.../birthdays' несуществующих данных выгрузки
         response = self.client.get(
             '/imports/1/citizens/birthdays',
@@ -475,6 +474,84 @@ class APITestCase( unittest.TestCase ):
         # Запрос '.../birthdays'
         response = self.client.get(
             '/imports/1/citizens/birthdays',
+            headers = self.get_api_headers(),
+        )
+
+        self.assertEqual( response.status_code, 200 )
+        json_response = json.loads( response.get_data( as_text = True ) )
+        self.assertEqual( json_response['data'], data )
+
+    def test_get_age_404( self ):
+        """ Тестирование GET-запросов на получение статистики несуществующей выгрузки
+        """
+        # Запрос статистики определенной выгрузки
+        response = self.client.get(
+            '/imports/1/towns/stat/percentile/age',
+            headers = self.get_api_headers(),
+        )
+
+        self.assertEqual( response.status_code, 404 )
+        json_response = json.loads( response.get_data( as_text = True ) )
+        self.assertEqual( json_response['Error 404'], 'Not Found' )
+
+    def test_get_age_200( self ):
+        """ Тестирование GET-запросов на получение статистики
+        """
+        # Данные для создания выгрузки
+        citizen = [
+            {
+                "citizen_id": 1, "town": "Москва", "street": "Льва Толстого",
+                "building": "16к7стр5", "apartment": 7, "name": "Иванов Иван Иванович",
+                "birth_date": "26.12.1986", "gender": "male", "relatives": [2, 3, 4, 5]
+            },
+            {
+                "citizen_id": 2, "town": "Москва", "street": "Льва Толстого",
+                "building": "16к7стр5", "apartment": 7, "name": "Иванов Сергей Иванович",
+                "birth_date": "01.04.1997", "gender": "male", "relatives": [1, 4, 5]
+            },
+            {
+                "citizen_id": 3, "town": "Москва", "street": "Льва Толстогоо",
+                "building": "16к7стр5", "apartment": 7, "name": "Романова Мария Леонидовна",
+                "birth_date": "23.11.1986", "gender": "female", "relatives": [1]
+            },
+            {
+                "citizen_id": 4, "town": "Керчь", "street": "Ленина",
+                "building": "11к1стр3", "apartment": 22, "name": "Иванов Иван Анатольевич",
+                "birth_date": "23.06.1960", "gender": "male", "relatives": [1, 2, 5]
+            },
+            {
+                "citizen_id": 5, "town": "Керчь", "street": "Ленина",
+                "building": "11к1стр3", "apartment": 22, "name": "Иванова Екатерина Павловна",
+                "birth_date": "20.06.1965", "gender": "female", "relatives": [1, 2, 4]
+            }
+        ]
+
+        # Данные для проверки корректности ответа
+        data = [
+            {
+                "p50": 56.5,
+                "p75": 57.75,
+                "p99": 58.95,
+                "town": 'Керчь'
+            },
+            {
+                "p50": 32.0,
+                "p75": 32.0,
+                "p99": 32.0,
+                "town": 'Москва'
+            }
+        ]
+
+        # Запрос на создание выгрузки
+        self.client.post(
+            '/imports',
+            headers = self.get_api_headers(),
+            data = json.dumps({ "citizens" : citizen })
+        )
+
+        # Запрос статистики определенной выгрузки
+        response = self.client.get(
+            '/imports/1/towns/stat/percentile/age',
             headers = self.get_api_headers(),
         )
 
